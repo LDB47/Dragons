@@ -20,7 +20,6 @@ public class QueryDragons {
      * @return all dragons from database
      * @throws SQLException 
      */
-    
     public static List<Dragon> getAll() throws SQLException {
 
         List<Dragon> dragons = new ArrayList<>();
@@ -85,14 +84,25 @@ public class QueryDragons {
         return dra;
     }
     
-    
-
-    public static boolean create(String dragon) {
+    /**
+     * Create new dragon in database
+     * @return boolean - if insertion succeeded
+     */
+    public static boolean create() {
         boolean success = false;
+        System.out.println("Créez un nouveau dragon:");
+        Dragon dra = new Dragon();
+        dra.createNewDragon();
         try {
-            String query = "INSERT INTO `dragons` VALUES (?)";
+            String query = "INSERT INTO dragons (id_dragon , dragon, sexe, longueur, nombre_ecailles, crache_feu, comportement_amoureux) VALUES ( ?, ? , ? , ? , ? , ?, ? )";
             PreparedStatement declaration = accessDataBase.prepareStatement(query);
-            declaration.setString(1, dragon);
+            declaration.setInt(1, dra.getId_dragon());
+            declaration.setString(2, dra.getDragon());
+            declaration.setString(3, dra.getSexe());
+            declaration.setInt(4, dra.getLongueur());
+            declaration.setInt(5, dra.getNombre_ecailles());
+            declaration.setString(6, dra.getCrache_feu());
+            declaration.setString(7, dra.getComportement_amoureux());
             boolean executeCreate = declaration.execute();
             success = (executeCreate);
         } catch (SQLException e) {

@@ -1,5 +1,7 @@
 package dragons;
 
+import java.util.Scanner;
+
 /**
  *
  * @author laure
@@ -81,6 +83,26 @@ public class Dragon {
 
     public void setComportement_amoureux(String comportement_amoureux) {
         this.comportement_amoureux = comportement_amoureux;
+    }
+    
+    /**
+     * Method called in QueryDragons to create new dragon by user
+     */
+    public void createNewDragon() {
+        System.out.println("Entrez un nouveau dragon. D'abord son ID, ensuite "
+                + "son nom, son sexe, sa longueur, le nombre d'écailles, s'il "
+                + "crache du feu et enfin son comportement amoureux.");
+        Scanner scanner = new Scanner(System.in);
+        this.setId_dragon(scanner.nextInt());
+        scanner.nextLine();
+        this.setDragon(scanner.nextLine());
+        this.setSexe(scanner.nextLine());
+        this.setLongueur(scanner.nextInt());
+        this.setNombre_ecailles(scanner.nextInt());
+        scanner.nextLine();
+        this.setCrache_feu(scanner.nextLine());
+        this.setComportement_amoureux(scanner.nextLine());
+        System.out.println(this.toString());
     }
 
     @Override
