@@ -50,9 +50,15 @@ public class QueryDragons {
         return dragons;
     }
     
+    /**
+     * 
+     * @return a dragon selected by name
+     * @throws SQLException 
+     */
     public static Dragon getDragon() throws SQLException {
-        Dragon dragon = null;
+        Dragon dra = new Dragon();
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Quel est le nom du dragon que vous voulez?");
         String nom = scanner.nextLine();
 
         try {
@@ -62,7 +68,6 @@ public class QueryDragons {
             ResultSet resultat = declaration.executeQuery(query);
 
             while (resultat.next()) {
-                Dragon dra = new Dragon();
                 dra.setId_dragon(resultat.getInt("id_dragon"));
                 dra.setDragon(resultat.getString("dragon"));
                 dra.setSexe(resultat.getString("sexe"));
@@ -77,7 +82,7 @@ public class QueryDragons {
                     "Erreur d'affichage de dragon: " + e.getMessage()
             );
         }
-        return dragon;
+        return dra;
     }
     
     
