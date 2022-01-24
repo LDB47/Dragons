@@ -15,14 +15,11 @@ public class DBConnect {
     static Connection accessDataBase = null;
 
     public static void openConnection() {
-        /* Parametres de connexion */
         String url = "jdbc:mysql://127.0.0.1/java_dragons2";
-// nesti = nom de ma bdd
         String utilisateur = "root";
         String motDePasse = "";
         try {
             System.out.println("Connexion réussie!");
-// on ajoute nos paramètres
             accessDataBase = DriverManager.getConnection(
                     url, utilisateur, motDePasse);
         } catch (SQLException ex) {
