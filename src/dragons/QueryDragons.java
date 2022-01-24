@@ -4,7 +4,6 @@ import static dragons.DBConnect.accessDataBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,7 +15,7 @@ import java.util.Scanner;
 public class QueryDragons {
 
     /**
-     * 
+     * Get all dragons
      * @return all dragons from database
      * @throws SQLException 
      */
@@ -50,7 +49,7 @@ public class QueryDragons {
     }
     
     /**
-     * 
+     * Get dragon by name
      * @return a dragon selected by name
      * @throws SQLException 
      */
@@ -64,7 +63,7 @@ public class QueryDragons {
             String query = "SELECT * FROM dragons WHERE dragon = ?";
             PreparedStatement declaration = accessDataBase.prepareStatement(query);
             declaration.setString(1, nom);
-            ResultSet resultat = declaration.executeQuery(query);
+            ResultSet resultat = declaration.executeQuery();
 
             while (resultat.next()) {
                 dra.setId_dragon(resultat.getInt("id_dragon"));
@@ -75,7 +74,7 @@ public class QueryDragons {
                 dra.setCrache_feu(resultat.getString("crache_feu"));
                 dra.setComportement_amoureux(resultat.getString("comportement_amoureux"));
                 System.out.println(dra.toString());
-            };
+            }
         } catch (Exception e) {
             System.err.println(
                     "Erreur d'affichage de dragon: " + e.getMessage()
@@ -111,6 +110,10 @@ public class QueryDragons {
         return success;
     }
 
+    /**
+     * Delete dragon from database
+     * @return boolean - if delete succeeded
+     */
     public static boolean delete() {
         Scanner scanner = new Scanner(System.in);
         boolean success = false;
@@ -129,6 +132,11 @@ public class QueryDragons {
         return success;
     }
     
+    /**
+     * Method to update a dragon in database
+     * @return boolean - if update succeeded
+     * @throws SQLException 
+     */
     public static boolean update() throws SQLException {
         boolean success = false;
         Scanner scanner = new Scanner(System.in);

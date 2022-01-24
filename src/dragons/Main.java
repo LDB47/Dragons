@@ -23,7 +23,8 @@ public class Main {
             choice = util.showMenu();
             util.menuChoice(choice);
             bool = util.quit(choice);
-        } while (bool);
+        } 
+        while (bool);
     }
     
 }

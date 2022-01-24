@@ -18,6 +18,10 @@ public class Utilities {
     static int userSelection;
     static int updateSelection;
     
+    /**
+     * 
+     * @return userSelection to move forward the scenario
+     */
     public static int showMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Que voulez-vous faire?");
@@ -29,6 +33,11 @@ public class Utilities {
         return userSelection;
     }
     
+    /**
+     * 
+     * @param choice
+     * @return boolean value to help quit the program
+     */
     public boolean quit(int choice) {
         boolean quitProg = true;
         if (choice == 6) {
@@ -37,6 +46,11 @@ public class Utilities {
         return quitProg;
     }
     
+    /**
+     * Display the menu for the user
+     * @param userSelection
+     * @throws SQLException 
+     */
     public static void menuChoice(int userSelection) throws SQLException {
         switch (userSelection) {
             case 1:
@@ -63,6 +77,10 @@ public class Utilities {
         }
     }
     
+    /**
+     * 
+     * @return the user selection for update
+     */
     public static int showUpdate() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Que vouslez-vous modifier?");
@@ -73,6 +91,12 @@ public class Utilities {
         return updateSelection;
     }
     
+    /**
+     * 
+     * @param updateSelection
+     * @return name of chosen column
+     * @throws SQLException 
+     */
     public static String updateChoice(int updateSelection) throws SQLException {
         String column = "";
         switch (updateSelection) {
