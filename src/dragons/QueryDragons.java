@@ -55,13 +55,13 @@ public class QueryDragons {
      * @throws SQLException 
      */
     public static Dragon getDragon() throws SQLException {
-        Dragon dra = new Dragon();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Quel est le nom du dragon que vous voulez?");
+        Dragon dra = new Dragon();
+        System.out.println("Quel est le nom du dragon que vous voulez afficher?");
         String nom = scanner.nextLine();
 
         try {
-            String query = "SELECT * FROM dragons WHERE dragon = ?;";
+            String query = "SELECT * FROM dragons WHERE dragon = ?";
             PreparedStatement declaration = accessDataBase.prepareStatement(query);
             declaration.setString(1, nom);
             ResultSet resultat = declaration.executeQuery(query);
@@ -111,17 +111,47 @@ public class QueryDragons {
         return success;
     }
 
-    public static boolean delete(int id) {
+    public static boolean delete() {
+        Scanner scanner = new Scanner(System.in);
         boolean success = false;
+        System.out.println("Quel est le nom du dragon que vous voulez supprimer?");
+        String name = scanner.nextLine();
         try {
-            String query = "DELETE FROM dragons WHERE id_dragon = ?";
+            String query = "DELETE FROM dragons WHERE dragon = ?";
             PreparedStatement declaration = accessDataBase.prepareStatement(query);
-            declaration.setInt(1, id);
+            declaration.setString(1, name);
             int executeUpdate = declaration.executeUpdate();
             success = (executeUpdate == 1);
+            System.out.println("Le dragon a bien été supprimé de la base de données!");
         } catch (SQLException e) {
             System.err.println("Erreur suppression de dragon: " + e.getMessage());
         }
+        return success;
+    }
+    
+    public static boolean update() throws SQLException {
+        boolean success = false;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Quel est le nom du dragon que vous voulez modifier?");
+        String name = scanner.nextLine();
+        int userChoiceUpdate = Utilities.showUpdate();
+        String column = Utilities.updateChoice(userChoiceUpdate);
+        System.out.println("Entrez la nouvelle valeur: ");
+        String newValue = scanner.nextLine();
+        
+        try {
+            String query = "UPDATE dragons SET "+ column +" = ?  WHERE dragon = ?";
+            PreparedStatement declaration = accessDataBase.prepareStatement(query);
+            declaration.setString(1, newValue);
+            declaration.setString(2, name);
+            int executeUpdate = declaration.executeUpdate();
+            success = (executeUpdate == 1);
+            System.out.println("Le dragon a bien été modifié!");
+        } catch (SQLException e) {
+            System.err.println("Erreur modification dragon: "
+                    + e.getMessage());
+        }
+
         return success;
     }
 
