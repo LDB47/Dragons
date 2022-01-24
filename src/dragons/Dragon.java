@@ -107,7 +107,11 @@ public class Dragon {
 
     @Override
     public String toString() {
-        return "Dragon{" + "id_dragon=" + id_dragon + ", dragon=" + dragon + ", sexe=" + sexe + ", longueur=" + longueur + ", nombre_ecailles=" + nombre_ecailles + ", crache_feu=" + crache_feu + ", comportement_amoureux=" + comportement_amoureux + '}';
+        return "Dragon {" + " id_dragon = " + id_dragon + ", dragon = " + 
+                dragon + ", sexe = " + sexe + ", longueur = " + longueur + ","
+                + " nombre_ecailles = " + nombre_ecailles + ", crache_feu = " + 
+                crache_feu + ", comportement_amoureux = " + 
+                comportement_amoureux + '}';
     }
 
 }
